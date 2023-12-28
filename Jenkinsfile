@@ -25,8 +25,8 @@ pipeline {
     // }
     stage("Docker build"){
       steps{
-        sh 'docker version'
-        sh 'docker build -t ayyarsachin/first-demo-project .'
+        sh 'sudo docker version'
+        sh 'sudo docker build -t ayyarsachin/first-demo-project .'
         sh 'docker image list'
         sh 'docker tag  ayyarsachin/first-demo-project ayyarsachin/first-demo-project:new'
     }
