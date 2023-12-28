@@ -14,13 +14,22 @@ pipeline {
         sh '/opt/maven/bin/mvn clean package'
       }
     }
-    stage('Create Container Image') {
-      steps {
-        echo 'Create Container Image..'
-        sh '''
-            oc start-build -F spring-boot --from-dir=.
-            '''
-      }
+    // stage('Create Container Image') {
+    //   steps {
+    //     echo 'Create Container Image..'
+    //     sh '''
+    //         oc start-build -F spring-boot --from-dir=.
+    //         '''
+    //   ]
+    //   }
+    // }
+    stage("Docker build"){
+      steps{
+        sh 'docker version'
+        sh 'docker build -t ayyarsachin/first-demo-project .'
+        sh 'docker image list'
+        sh 'docker tag  ayyarsachin/first-demo-project ayyarsachin/first-demo-project:new'
+    }
     }
     stage('Deployment') {
       steps {
